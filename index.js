@@ -2,6 +2,8 @@
 
 const inquirer = require("inquirer");
 const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 const fs = require("fs");
 const path = require("path");
 
@@ -49,6 +51,70 @@ function createManager(){
     })
 }
 
+function createEngineer(){
+    inquirer.prompt([
+        {
+           type: "input" ,
+           name: "Name",
+           message: "What is your name?"
+        },
+        {
+            type: "input" ,
+            name: "Id",
+            message: "What is your Id?"
+         },
+         {
+            type: "input" ,
+            name: "Email",
+            message: "What is your Email?"
+         },
+         {
+            type: "input" ,
+            name: "Github",
+            message: "What is your Github username?"
+         }
+    ]).then((Answers)=>{
+       
+        const engineer = new Engineer(Answers.Name, Answers.Id, Answers.Email, Answers.Number);
+
+        newTeamArray.push(engineer);
+
+        mainMenu();
+    });
+};
+
+function createIntern(){
+    inquirer.prompt([
+        {
+           type: "input" ,
+           name: "Name",
+           message: "What is your name?"
+        },
+        {
+            type: "input" ,
+            name: "Id",
+            message: "What is your Id?"
+         },
+         {
+            type: "input" ,
+            name: "Email",
+            message: "What is your Email?"
+         },
+         {
+            type: "input" ,
+            name: "Number",
+            message: "What is your office number?"
+         }
+    ]).then((Answers)=>{
+       
+        const intern = new Intern(Answers.Name, Answers.Id, Answers.Email, Answers.Number);
+
+        newTeamArray.push(intern);
+
+        mainMenu();
+    })
+}
+
 function mainMenu(){
     inquirer.prompt([
         {
@@ -62,12 +128,12 @@ function mainMenu(){
 
         switch(choice){
             case "Add Engineer":
-                // createEngineer()
-                console.log("fire off createEngineer")
+                createEngineer()
+               
             break;
             case "Add Intern":
-                // createIntern()
-                console.log("fire off createIntern")
+                createIntern()
+                
             break;
             case "Add Manager":
                 createManager()
@@ -86,8 +152,5 @@ function buildTeam(){
     }
     fs.writeFileSync(DIST_PATH, template(newTeamArray), "utf-8")
 }
-
-
-// follow the flow of createManager for engineer and intern
 
 init()

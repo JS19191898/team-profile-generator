@@ -20,9 +20,41 @@ const createTeam = team => {
         `
     }
 
+    const generateEngineer = engineer => {
+        return `
+        <div class="card" style="width: 18rem;">
+         <div class="card-body">
+         <h5 class="card-title">${engineer.getRole()}</h5>
+         <p class="card-text">Name: ${engineer.getName()}</p>
+         <p class="card-text">Id: ${engineer.getId()}</p>
+         <p class="card-text">Email: ${engineer.getEmail()}</p>
+         <p class="card-text">Github: ${engineer.getGithub()}</p>
+         </div>
+        </div>
+        `
+    }
+
+    const generateIntern = intern => {
+        return `
+        <div class="card" style="width: 18rem;">
+         <div class="card-body">
+         <h5 class="card-title">${intern.getRole()}</h5>
+         <p class="card-text">Name: ${intern.getName()}</p>
+         <p class="card-text">Id: ${intern.getId()}</p>
+         <p class="card-text">Email: ${intern.getEmail()}</p>
+         <p class="card-text">School: ${intern.getSchool()}</p>
+         </div>
+        </div>
+        `
+    }
+
     const finishedTeam = [];
 
     finishedTeam.push(team.filter(employee => employee.getRole() === "Manager").map(manager => generateManager(manager)));
+
+    finishedTeam.push(team.filter(employee => employee.getRole() === "Engineer").map(Engineer => generateEngineer(Engineer)).join(""));
+
+    finishedTeam.push(team.filter(employee => employee.getRole() === "Intern").map(Intern => generateIntern(Intern)).join(""));
 
 
     return finishedTeam.join("")
@@ -43,7 +75,13 @@ module.exports = team => {
     <title>Team Profile Generator</title>
 </head>
 <body>
+
+    <div class="container">
+    <div class="row">
     ${createTeam(team)}
+    </div>
+    </div>
+
 </body>
 </html>
     `

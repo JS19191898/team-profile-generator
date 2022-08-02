@@ -4,8 +4,7 @@ This is a sample app designed to showcase the funcitonality of a team-profile ge
 
 
 Links: 
-Link to repo --> 
-Link to deployed app page --> 
+Link to repo --> https://github.com/JS19191898/team-profile-generator
 
 Screenshots:
 ![team-profile-generator-1](https://user-images.githubusercontent.com/99297739/182289638-79b25b1b-c182-48c1-aacb-d787f86338f1.PNG)
